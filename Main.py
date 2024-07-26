@@ -90,7 +90,7 @@ def bfs(lab, inicio, fim):
         # Percorremos por todos os vizinhos possíveis do nosso ponto (x, y)
         for (nx, ny), direcao in [((x-1, y), '↑'), ((x+1, y), '↓'), ((x, y-1), '←'), ((x, y+1), '→')]:
             # Verificamos se esse possível ponto vizinho existe no labirinto
-            if 0 <= nx < len(lab) and 0 <= ny < len(lab[nx]) and lab[nx][ny] != '#':
+            if 0 <= nx < len(lab) and 0 <= ny < len(lab[nx]) and lab[nx][ny] not in {'#', '█'}:
                 # Se esse ponto vizinho ainda não tiver sido visitado
                 if (nx, ny) not in visitados:
                     fila.append((nx, ny))
@@ -131,7 +131,7 @@ def dfs(lab, inicio, fim):
         # Percorremos por todos os vizinhos possíveis do nosso ponto (x, y)
         for (nx, ny), direcao in [((x-1, y), '↑'), ((x+1, y), '↓'), ((x, y-1), '←'), ((x, y+1), '→')]:
             # Verificamos se esse possível ponto vizinho existe no labirinto
-            if 0 <= nx < len(lab) and 0 <= ny < len(lab[nx]) and lab[nx][ny] != '#':
+            if 0 <= nx < len(lab) and 0 <= ny < len(lab[nx]) and lab[nx][ny] not in {'#', '█'}:
                 # Se esse ponto vizinho ainda não tiver sido visitado
                 if (nx, ny) not in visitados:
                     pilha.append(((nx, ny), direcao))
