@@ -89,15 +89,22 @@ def bfs(lab, inicio, fim):
 
 def dfs(lab, inicio, fim):
     pilha = [(inicio, [], {})]  # Inclui o caminho e as direções percorridas
-    visitados = set([inicio])
+    visitados = set()
     explorados = []  # Lista para armazenar todos os nós visitados
 
     while pilha:
         no, caminho, direcoes = pilha.pop()
         i, j = no
+
+        if no in visitados:
+            continue
+
+        visitados.add(no)
         explorados.append(no)  # Adiciona o nó atual à lista de nós visitados
+
         if no == fim:
             return caminho + [fim], explorados, direcoes
+
         vizinhos = [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]
         direcoes_vizinhos = {
             (i+1, j): '↓',
@@ -109,7 +116,7 @@ def dfs(lab, inicio, fim):
             x, y = vizinho
             if 0 <= x < len(lab) and 0 <= y < len(lab[0]) and lab[x][y] not in ('#', '█') and vizinho not in visitados:
                 pilha.append((vizinho, caminho + [no], {**direcoes, **{vizinho: direcoes_vizinhos[(x, y)]}}))
-                visitados.add(vizinho)
+
     return None, explorados, direcoes
 
 def main():
