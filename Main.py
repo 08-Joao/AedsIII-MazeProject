@@ -31,7 +31,7 @@
 # '༝' representa o caminho que o algoritmo visitou mas retornou pois não liga com o ponto final
 
 import sys
-import time
+import timeit
 from tkinter import Tk, filedialog
 from collections import deque
 
@@ -148,26 +148,26 @@ def main():
             continue
 
         print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
-        bfsStartTime = time.time()
         # Buscamos o caminho com a busca em largura
+        bfsStartTime = timeit.default_timer()
         caminho_bfs, explorados_bfs, direcoes_bfs = bfs(lab_bfs, inicio, fim)
+        bfsEndTime = timeit.default_timer()
         marcar_caminho(lab_bfs, caminho_bfs, direcoes_bfs, explorados_bfs)
         print("Labirinto após Busca por Largura:")
         imprimir_labirinto(lab_bfs)
         print("Nós Visitados na Busca por Largura:", explorados_bfs)
-        bfsEndTime = time.time()
         print("Tempo de execução em busca de Largura: ", bfsEndTime - bfsStartTime)
 
-        print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-")
-        dfsStartTime = time.time()
+        print("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-\n")
         # Buscamos o caminho com a busca por profundidade
+        dfsStartTime = timeit.default_timer()
         caminho_dfs, explorados_dfs, direcoes_dfs = dfs(lab_dfs, inicio, fim)
+        dfsEndTime = timeit.default_timer()
         marcar_caminho(lab_dfs, caminho_dfs, direcoes_dfs, explorados_dfs)
         print("Labirinto após Busca por Profundidade:")
         imprimir_labirinto(lab_dfs)
         print("Nós Visitados na Busca por Profundidade:", explorados_dfs)
-        dfsEndTime = time.time()
-        print("Tempo de execução em busca de Profundidade: ", dfsEndTime - dfsStartTime)
+        print("Tempo de execução em busca de Profundidade: ", dfsEndTime - dfsStartTime, "\n")
 
 if __name__ == '__main__':
     main()
